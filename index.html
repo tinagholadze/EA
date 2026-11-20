@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Entrepreneurs Association | We Create Opportunities</title>
+<meta name="description" content="Entrepreneurs Association is a non-profit, membership-based organization founded in 2012 to promote innovation and entrepreneurship in Georgia.">
+<meta name="theme-color" content="#500724">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --yellow: #F472B6;
+    --gold: #FBCFE8;
+    --blue: #9D174D;
+    --blue-deep: #500724;
+    --ink: #1F0A17;
+    --muted: #4a4a55;          /* 7:1 on paper, WCAG AAA body text */
+    --paper: #FDF2F8;
+    --card: #ffffff;
+    --pink: #0891B2;
+    --radius: 22px;
+    --shadow: 0 30px 60px -20px rgba(80,7,36,.25);
+    --focus: 0 0 0 3px #fff, 0 0 0 6px var(--blue);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; scroll-padding-top: 90px; }
+  body {
+    font-family: 'Poppins', system-ui, sans-serif;
+    font-size: 16px;
+    color: var(--ink);
+    background: var(--paper);
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+  h1, h2, h3, h4 { font-family: 'Playfair Display', Georgia, serif; line-height: 1.2; }
+  a { color: inherit; text-decoration: none; }
+  img, svg { display: block; max-width: 100%; }
+  .icon { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; flex: 0 0 auto; }
+
+  /* Focus: visible on every interactive element (keyboard users) */
+  :focus-visible { outline: none; box-shadow: var(--focus); border-radius: 12px; }
+
+  .skip-link {
+    position: absolute; left: 16px; top: -60px; z-index: 100; background: #fff; color: var(--blue-deep);
+    padding: 12px 18px; border-radius: 12px; font-weight: 600; transition: top .2s;
+  }
+  .skip-link:focus { top: 16px; }
+
+  /* ---------- Navigation ---------- */
+  nav {
+    position: fixed; inset: 0 0 auto 0; z-index: 50;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 16px clamp(20px, 5vw, 80px);
+    transition: background .4s ease, box-shadow .4s ease, padding .4s ease;
+  }
+  nav.scrolled {
+    background: rgba(253,242,248,.94);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    box-shadow: 0 10px 30px -15px rgba(0,0,0,.2);
+    padding-top: 10px; padding-bottom: 10px;
+  }
+  .brand { display: flex; align-items: center; gap: 12px; font-weight: 600; color: #fff; transition: color .4s; }
+  nav.scrolled .brand { color: var(--ink); }
+  .brand-mark {
+    width: 44px; height: 44px; border-radius: 12px;
+    background: linear-gradient(135deg, var(--yellow), var(--pink));
+    display: grid; place-items: center;
+    font-family: 'Playfair Display', serif; font-weight: 800; color: var(--blue-deep); font-size: 18px;
+  }
+  .brand small { display: block; font-weight: 400; font-size: 12px; letter-spacing: .14em; text-transform: uppercase; opacity: .9; }
+  .nav-links { display: flex; gap: 4px; align-items: center; }
+  .nav-links a {
+    color: #fff; font-size: 15px; font-weight: 500; min-height: 44px; display: inline-flex; align-items: center;
+    padding: 0 16px; border-radius: 999px; transition: background .3s, color .3s;
+  }
+  nav.scrolled .nav-links a { color: var(--ink); }
+  .nav-links a:hover { background: rgba(255,255,255,.16); }
+  nav.scrolled .nav-links a:hover { background: rgba(157,23,77,.08); color: var(--blue); }
+  .nav-cta {
+    background: var(--yellow) !important; color: var(--blue-deep) !important; font-weight: 600 !important;
+    margin-left: 8px;
+  }
+  .nav-cta:hover { background: #F472B6 !important; }
+  .menu-toggle {
+    display: none; background: none; border: 0; color: #fff; width: 44px; height: 44px; border-radius: 12px;
+    cursor: pointer; place-items: center;
+  }
+  nav.scrolled .menu-toggle { color: var(--ink); }
+
+  /* ---------- Hero ---------- */
+  .hero {
+    position: relative; min-height: 100vh;
+    display: grid; align-items: center;
+    padding: 140px clamp(20px, 6vw, 96px) 110px;
+    background:
+      radial-gradient(1000px 640px at 88% 8%, rgba(8,145,178,.35), transparent 60%),
+      radial-gradient(900px 600px at 0% 100%, rgba(236,72,153,.22), transparent 60%),
+      linear-gradient(135deg, #500724 0%, #831843 45%, #9D174D 100%);
+    color: #fff; overflow: hidden; isolation: isolate;
+  }
+  .hero::before, .hero::after {
+    content: ""; position: absolute; border-radius: 50%; z-index: -1; opacity: .45;
+    animation: float 14s ease-in-out infinite;
+  }
+  .hero::before { width: 520px; height: 520px; right: -140px; top: -120px; border: 1px solid rgba(255,255,255,.3); }
+  .hero::after  { width: 300px; height: 300px; left: 42%; bottom: -120px; background: radial-gradient(circle, rgba(236,72,153,.35), transparent 70%); animation-delay: -6s; }
+  @keyframes float { 0%,100% { transform: translateY(0) rotate(0); } 50% { transform: translateY(-30px) rotate(8deg); } }
+
+  .hero-grid { display: grid; grid-template-columns: 1.15fr .85fr; gap: 60px; align-items: center; max-width: 1280px; margin: 0 auto; width: 100%; }
+  .eyebrow {
+    display: inline-flex; align-items: center; gap: 10px; min-height: 40px;
+    padding: 8px 16px; border-radius: 999px;
+    background: rgba(255,255,255,.14); border: 1px solid rgba(255,255,255,.35);
+    font-size: 13px; letter-spacing: .1em; text-transform: uppercase; font-weight: 500;
+  }
+  .eyebrow .dot { width: 8px; height: 8px; background: var(--yellow); border-radius: 50%; }
+  .hero h1 { font-size: clamp(46px, 7vw, 92px); font-weight: 800; margin: 26px 0 18px; }
+  .hero h1 em { font-style: italic; color: #FBCFE8; }
+  .hero p.lead { font-size: clamp(17px, 1.6vw, 20px); max-width: 560px; color: #fff; font-weight: 300; }
+  .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 36px; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 10px; min-height: 52px;
+    padding: 14px 30px; border-radius: 999px; font-weight: 600; font-size: 16px;
+    transition: transform .3s ease, box-shadow .3s ease, background .3s ease;
+    cursor: pointer;
+  }
+  .btn-primary { background: var(--yellow); color: var(--blue-deep); box-shadow: 0 18px 40px -14px rgba(0,0,0,.45); }
+  .btn-primary:hover { transform: translateY(-3px); background: #F9A8D4; }
+  .btn-ghost { border: 1.5px solid #fff; color: #fff; }
+  .btn-ghost:hover { background: rgba(255,255,255,.14); transform: translateY(-3px); }
+  .btn .icon { transition: transform .3s; }
+  .btn:hover .icon { transform: translateX(4px); }
+
+  .hero-card {
+    justify-self: end; width: min(420px, 100%);
+    background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.3);
+    border-radius: 28px; padding: 34px; backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px);
+    box-shadow: 0 40px 80px -30px rgba(0,0,0,.45);
+  }
+  .hero-card h2 { font-size: 26px; margin-bottom: 22px; }
+  .stat-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .stat { background: rgba(255,255,255,.12); border-radius: 18px; padding: 20px; }
+  .stat strong { display: block; font-family: 'Playfair Display', serif; font-size: 40px; line-height: 1; font-weight: 800; color: #fff; }
+  .stat span { font-size: 14px; color: #fff; }
+  .hero-card .since { margin-top: 18px; font-size: 15px; color: #fff; border-top: 1px solid rgba(255,255,255,.3); padding-top: 16px; }
+
+  .scroll-cue {
+    position: absolute; bottom: 24px; left: 50%; transform: translateX(-50%);
+    font-size: 12px; letter-spacing: .25em; text-transform: uppercase;
+    display: flex; flex-direction: column; align-items: center; gap: 10px; color: #fff;
+  }
+  .scroll-cue::after { content: ""; width: 1.5px; height: 40px; background: linear-gradient(#fff, transparent); }
+
+  /* ---------- Sections ---------- */
+  section { padding: clamp(80px, 11vw, 140px) clamp(20px, 6vw, 96px); position: relative; }
+  .wrap { max-width: 1200px; margin: 0 auto; }
+  .section-head { text-align: center; max-width: 720px; margin: 0 auto 64px; }
+  .kicker { display: inline-block; font-size: 13px; letter-spacing: .2em; text-transform: uppercase; color: var(--blue); font-weight: 600; margin-bottom: 14px; }
+  .section-head h2 { font-size: clamp(36px, 4.5vw, 56px); font-weight: 700; }
+  .divider { width: 80px; height: 4px; border-radius: 4px; margin: 22px auto 0; background: linear-gradient(90deg, var(--yellow), var(--pink)); }
+  .section-head p { color: var(--muted); margin-top: 22px; font-size: 17px; }
+
+  .reveal { opacity: 0; transform: translateY(40px); transition: opacity .9s cubic-bezier(.2,.7,.2,1), transform .9s cubic-bezier(.2,.7,.2,1); }
+  .reveal.in { opacity: 1; transform: none; }
+  .reveal.d1 { transition-delay: .1s; } .reveal.d2 { transition-delay: .2s; } .reveal.d3 { transition-delay: .3s; }
+
+  /* About */
+  #about { background: #fff; }
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 70px; align-items: center; }
+  .about-copy h2 { font-size: clamp(28px, 3vw, 38px); margin-bottom: 22px; }
+  .about-copy > p { color: var(--muted); margin-bottom: 18px; }
+  .pillars { display: grid; gap: 16px; margin-top: 28px; }
+  .pillar {
+    display: flex; gap: 18px; align-items: flex-start; padding: 22px 24px; border-radius: var(--radius);
+    background: var(--paper); border: 1px solid rgba(0,0,0,.08);
+    transition: transform .4s ease, box-shadow .4s ease, border-color .4s;
+  }
+  .pillar:hover { transform: translateX(8px); box-shadow: 0 20px 40px -24px rgba(80,7,36,.35); border-color: rgba(236,72,153,.7); }
+  .pillar .ico {
+    flex: 0 0 52px; height: 52px; border-radius: 16px; display: grid; place-items: center;
+    background: linear-gradient(135deg, var(--yellow), #FBCFE8); color: var(--blue-deep);
+  }
+  .pillar h3 { font-size: 18px; font-weight: 600; margin-bottom: 4px; }
+  .pillar p { font-size: 16px; color: var(--muted); }
+
+  .visual { position: relative; min-height: 520px; }
+  .visual .orb { position: absolute; border-radius: 40px; padding: 34px; box-shadow: var(--shadow); }
+  .orb.big { inset: 0 60px 90px 0; background: linear-gradient(160deg, #F472B6 0%, #F9A8D4 60%, #FBCFE8 100%); color: var(--blue-deep); }
+  .orb.blue { right: 0; bottom: 0; width: 60%; height: 52%; background: linear-gradient(150deg, #0891B2, var(--blue-deep)); color: #fff; }
+  .orb h3 { font-size: 34px; line-height: 1.1; }
+  .orb.blue h3 { font-size: 26px; }
+  .orb p { font-size: 16px; margin-top: 12px; }
+  .big-number {
+    position: absolute; top: 34px; right: 40px; font-family: 'Playfair Display', serif;
+    font-size: 110px; font-weight: 800; color: rgba(80,7,36,.14); line-height: 1;
+  }
+  .floating-chip {
+    position: absolute; left: -10px; top: 56%; background: #fff; color: var(--ink); border-radius: 18px; padding: 16px 20px;
+    box-shadow: 0 20px 40px -15px rgba(0,0,0,.25); font-size: 15px; animation: float 9s ease-in-out infinite;
+  }
+  .floating-chip b { display: block; font-size: 24px; font-family: 'Playfair Display', serif; color: var(--blue); }
+
+  /* Mission band */
+  .band {
+    background: linear-gradient(120deg, var(--blue-deep), var(--blue));
+    color: #fff; text-align: center; padding: clamp(70px, 9vw, 110px) 24px; position: relative; overflow: hidden;
+  }
+  .band::before {
+    content: ""; position: absolute; inset: -40% -10%; background:
+      radial-gradient(circle at 20% 30%, rgba(236,72,153,.22), transparent 35%),
+      radial-gradient(circle at 80% 70%, rgba(8,145,178,.22), transparent 35%);
+    animation: drift 18s linear infinite alternate;
+  }
+  @keyframes drift { to { transform: translate(40px, -20px) rotate(4deg); } }
+  .band blockquote { position: relative; font-family: 'Playfair Display', serif; font-size: clamp(28px, 4vw, 48px); font-style: italic; max-width: 900px; margin: 0 auto; line-height: 1.3; }
+  .band cite { display: block; margin-top: 22px; font-family: 'Poppins', sans-serif; font-style: normal; font-size: 14px; letter-spacing: .16em; text-transform: uppercase; color: var(--gold); }
+
+  /* Projects */
+  #projects { background: var(--paper); }
+  .projects-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 22px; }
+  .project {
+    position: relative; background: var(--card); border-radius: var(--radius); padding: 30px 28px 26px;
+    border: 1px solid rgba(0,0,0,.08); overflow: hidden; min-height: 210px;
+    display: flex; flex-direction: column; justify-content: space-between;
+    transition: transform .45s cubic-bezier(.2,.7,.2,1), box-shadow .45s, border-color .45s;
+  }
+  .project::after {
+    content: ""; position: absolute; right: -40px; bottom: -60px; width: 150px; height: 150px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(236,72,153,.35), transparent 70%); transition: transform .6s;
+  }
+  .project:hover { transform: translateY(-10px); box-shadow: var(--shadow); border-color: transparent; }
+  .project:hover::after { transform: scale(2.2); }
+  .project .tag { font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--blue); font-weight: 600; margin-bottom: 12px; }
+  .project .num { font-family: 'Playfair Display', serif; font-size: 44px; font-weight: 800; color: rgba(157,23,77,.12); position: absolute; top: 14px; right: 22px; }
+  .project h3 { font-size: 21px; font-weight: 700; position: relative; z-index: 1; }
+  .project .more { margin-top: 22px; font-size: 15px; font-weight: 600; color: var(--blue-deep); display: flex; align-items: center; gap: 8px; position: relative; z-index: 1; }
+  .project .more .icon { width: 18px; height: 18px; transition: transform .3s; }
+  .project:hover .more .icon { transform: translateX(6px); }
+
+  /* Team */
+  #team { background: #fff; }
+  .team-group + .team-group { margin-top: 64px; }
+  .group-title { text-align: center; font-size: 28px; margin-bottom: 36px; }
+  .group-title::after { content: ""; display: block; width: 50px; height: 3px; background: var(--yellow); margin: 12px auto 0; border-radius: 3px; }
+  .people { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 26px; }
+  .person { text-align: center; padding: 30px 20px 26px; border-radius: var(--radius); background: var(--paper); transition: transform .4s, box-shadow .4s; }
+  .person:hover { transform: translateY(-6px); box-shadow: 0 25px 45px -25px rgba(80,7,36,.35); }
+  .avatar {
+    width: 116px; height: 116px; border-radius: 50%; margin: 0 auto 18px; display: grid; place-items: center;
+    font-family: 'Playfair Display', serif; font-size: 36px; font-weight: 700; color: var(--blue-deep);
+    background: linear-gradient(135deg, #F9A8D4, #FBCFE8 45%, #67E8F9);
+    box-shadow: 0 0 0 6px #fff, 0 0 0 7px rgba(236,72,153,.5);
+  }
+  .avatar.b { background: linear-gradient(135deg, #67E8F9, var(--blue)); color: #fff; }
+  .avatar.p { background: linear-gradient(135deg, #FBCFE8, #BE185D); color: #fff; }
+  .person h3 { font-size: 19px; font-weight: 600; }
+  .person .role { font-size: 15px; color: var(--muted); margin-top: 4px; }
+
+  /* Membership */
+  #membership { background: linear-gradient(160deg, #FDF2F8 0%, var(--paper) 55%); }
+  .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; margin-bottom: 60px; }
+  .step {
+    background: #fff; border-radius: var(--radius); padding: 36px 30px;
+    box-shadow: 0 15px 40px -28px rgba(80,7,36,.4); transition: transform .4s;
+  }
+  .step:hover { transform: translateY(-6px); }
+  .step .n {
+    width: 52px; height: 52px; border-radius: 16px; display: grid; place-items: center;
+    background: var(--blue-deep); color: var(--yellow); font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 700;
+    margin-bottom: 20px;
+  }
+  .step h3 { font-size: 22px; margin-bottom: 10px; }
+  .step p { color: var(--muted); font-size: 16px; }
+  .cta-card {
+    max-width: 900px; margin: 0 auto; border-radius: 32px; padding: clamp(40px, 6vw, 70px);
+    background: linear-gradient(135deg, #F9A8D4 0%, #FBCFE8 50%, #FCE7F3 130%);
+    text-align: center; position: relative; overflow: hidden; box-shadow: 0 40px 80px -40px rgba(236,72,153,.8);
+  }
+  .cta-card::before { content: ""; position: absolute; width: 380px; height: 380px; border-radius: 50%; border: 60px solid rgba(255,255,255,.22); right: -150px; top: -150px; }
+  .cta-card h2 { font-size: clamp(30px, 4vw, 44px); color: var(--blue-deep); position: relative; }
+  .cta-card p { color: var(--blue-deep); margin: 14px auto 30px; max-width: 560px; position: relative; font-size: 17px; }
+  .btn-dark { background: var(--blue-deep); color: #fff; position: relative; box-shadow: 0 18px 40px -14px rgba(80,7,36,.6); }
+  .btn-dark:hover { transform: translateY(-3px); background: #3B0A24; }
+  .cta-card .fine { font-size: 15px; margin-top: 18px; position: relative; }
+
+  /* Contact */
+  #contact { background: var(--blue-deep); color: #fff; padding-bottom: 40px; }
+  #contact .kicker { color: var(--yellow); }
+  #contact .section-head p { color: #FCE7F3; }
+  .contact-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+  .contact-card {
+    padding: 34px 30px; border-radius: var(--radius); background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.18);
+    transition: background .4s, transform .4s, border-color .4s;
+  }
+  .contact-card:hover { background: rgba(255,255,255,.13); transform: translateY(-6px); border-color: rgba(236,72,153,.6); }
+  .contact-card .ci {
+    width: 52px; height: 52px; border-radius: 16px; display: grid; place-items: center; margin-bottom: 18px;
+    background: var(--yellow); color: var(--blue-deep);
+  }
+  .contact-card h3 { font-family: 'Poppins', sans-serif; font-size: 14px; letter-spacing: .14em; text-transform: uppercase; color: var(--yellow); margin-bottom: 8px; font-weight: 600; }
+  .contact-card p, .contact-card a { font-size: 17px; color: #fff; word-break: break-word; }
+  .contact-card a { text-decoration: underline; text-decoration-color: rgba(236,72,153,.6); text-underline-offset: 4px; }
+  .contact-card a:hover { color: var(--gold); }
+  .socials { display: flex; gap: 12px; margin-top: 48px; justify-content: center; }
+  .socials a {
+    min-width: 52px; height: 52px; padding: 0 18px; border-radius: 16px; display: inline-flex; align-items: center; gap: 10px;
+    background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.22); font-weight: 600; font-size: 15px;
+    transition: background .3s, color .3s, transform .3s;
+  }
+  .socials a:hover { background: var(--yellow); color: var(--blue-deep); transform: translateY(-4px); }
+  footer { text-align: center; margin-top: 56px; padding-top: 28px; border-top: 1px solid rgba(255,255,255,.2); font-size: 15px; color: #FCE7F3; }
+
+  /* ---------- Responsive (375 / 768 / 1024 / 1440) ---------- */
+  @media (max-width: 1024px) {
+    .hero-grid, .about-grid { grid-template-columns: 1fr; gap: 50px; }
+    .hero-card { justify-self: start; }
+    .visual { min-height: 460px; }
+    .steps { grid-template-columns: 1fr; }
+    .contact-grid { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 960px) {
+    .nav-links {
+      position: fixed; top: 0; right: 0; height: 100vh; width: min(320px, 88vw); flex-direction: column; align-items: stretch; gap: 6px;
+      background: var(--paper); padding: 96px 24px 24px; transform: translateX(105%); visibility: hidden;
+      transition: transform .45s cubic-bezier(.2,.7,.2,1), visibility .45s; box-shadow: -20px 0 50px -20px rgba(0,0,0,.3);
+    }
+    .nav-links.open { transform: none; visibility: visible; }
+    .nav-links a { color: var(--ink) !important; font-size: 17px; padding: 0 18px; }
+    .nav-links a:hover { background: rgba(157,23,77,.08); }
+    .menu-toggle { display: grid; z-index: 60; }
+    .nav-cta { margin: 10px 0 0; justify-content: center; }
+  }
+  @media (max-width: 640px) {
+    .hero { padding-top: 120px; }
+    .stat strong { font-size: 32px; }
+    .big-number { font-size: 80px; }
+    .floating-chip { left: 0; }
+    .contact-grid, .steps { grid-template-columns: 1fr; }
+    .brand small { display: none; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+    .reveal { opacity: 1; transform: none; }
+  }
+</style>
+</head>
+<body>
+
+<a class="skip-link" href="#main">Skip to content</a>
+
+<nav id="nav" aria-label="Main navigation">
+  <a href="#top" class="brand" aria-label="Entrepreneurs Association, back to top">
+    <span class="brand-mark" aria-hidden="true">EA</span>
+    <span>Entrepreneurs<small>Association · Georgia</small></span>
+  </a>
+  <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false" aria-controls="navLinks">
+    <svg class="icon" id="menuIcon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+  </button>
+  <div class="nav-links" id="navLinks">
+    <a href="#about">About</a>
+    <a href="#projects">Projects</a>
+    <a href="#team">Team</a>
+    <a href="#membership">Membership</a>
+    <a href="#contact" class="nav-cta">Contact</a>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="hero-grid">
+    <div>
+      <span class="eyebrow"><span class="dot" aria-hidden="true"></span> Non-profit · Membership based · Since 2012</span>
+      <h1>We create <em>opportunities.</em></h1>
+      <p class="lead">Entrepreneurs Association builds a community of innovators and founders, and supports them with networking, mentoring, training and acceleration, especially in Georgia's regions.</p>
+      <div class="hero-actions">
+        <a href="#membership" class="btn btn-primary">Join the community
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <a href="#projects" class="btn btn-ghost">Explore our projects</a>
+      </div>
+    </div>
+    <aside class="hero-card" aria-labelledby="glance">
+      <h2 id="glance">At a glance</h2>
+      <div class="stat-row">
+        <div class="stat"><strong>250+</strong><span>entrepreneurs united</span></div>
+        <div class="stat"><strong>2012</strong><span>year founded</span></div>
+        <div class="stat"><strong>5</strong><span>sectors: craft, production, service, tourism, agriculture</span></div>
+        <div class="stat"><strong>2×</strong><span>membership reviews every month</span></div>
+      </div>
+      <p class="since">Membership applications are reviewed twice a month by our evaluation committee.</p>
+    </aside>
+  </div>
+  <div class="scroll-cue" aria-hidden="true">Scroll</div>
+</header>
+
+<main id="main">
+
+<section id="about" aria-labelledby="about-title">
+  <div class="about-grid">
+    <div class="about-copy reveal">
+      <span class="kicker">Who we are</span>
+      <h2 id="about-title">A non-profit that turns ideas into businesses</h2>
+      <p>Entrepreneurs Association is a non-for-profit, membership-based organization founded in 2012. Our work starts from a simple belief: innovation and entrepreneurship should be open to young people everywhere, not only in the capital.</p>
+      <div class="pillars">
+        <div class="pillar">
+          <div class="ico" aria-hidden="true">
+            <svg class="icon" viewBox="0 0 24 24"><path d="M12 21v-9M12 12c0-4 3-6 7-6 0 4-3 6-7 6zM12 15c0-3-2.5-5-6-5 0 3 2.5 5 6 5z"/></svg>
+          </div>
+          <div>
+            <h3>Vision</h3>
+            <p>A culture of innovation and entrepreneurship among young people, with a focus on empowering founders in rural areas of Georgia.</p>
+          </div>
+        </div>
+        <div class="pillar">
+          <div class="ico" aria-hidden="true">
+            <svg class="icon" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.5"/><circle cx="17" cy="9" r="2.5"/><path d="M3 20c0-3.5 2.7-6 6-6s6 2.5 6 6M15 14.5c2.6 0 5 1.9 5 5"/></svg>
+          </div>
+          <div>
+            <h3>Mission</h3>
+            <p>Build a community of innovators and entrepreneurs, and support them through networking, mentoring, training and acceleration.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="visual reveal d2" aria-hidden="true">
+      <div class="orb big">
+        <span class="big-number">12</span>
+        <h3>From idea<br>to marketplace</h3>
+        <p>Training, mentoring and acceleration for founders at every stage.</p>
+      </div>
+      <div class="floating-chip"><b>250+</b>members &amp; founders</div>
+      <div class="orb blue">
+        <h3>Five sectors.<br>One community.</h3>
+        <p>Craft &amp; design · Production · Services · Tourism · Agriculture</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="band">
+  <blockquote class="reveal">“A community of innovators and entrepreneurs who support one another.”</blockquote>
+  <cite>Our mission in one line</cite>
+</div>
+
+<section id="projects" aria-labelledby="projects-title">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="kicker">What we do</span>
+      <h2 id="projects-title">Projects &amp; programs</h2>
+      <div class="divider" aria-hidden="true"></div>
+      <p>A selection of the projects implemented or organized by EA.</p>
+    </div>
+    <div class="projects-grid">
+      <article class="project reveal"><span class="num" aria-hidden="true">01</span><div><div class="tag">Rural · Youth</div><h3>Rural Acceleration: Youth for Sustainable Rural Development</h3></div><div class="more">Learn more <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div></article>
+      <article class="project reveal d1"><span class="num" aria-hidden="true">02</span><div><div class="tag">Competition</div><h3>Startup Competition: Entrepreneurship World Cup</h3></div><div class="more">Learn more <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div></article>
+      <article class="project reveal d2"><span class="num" aria-hidden="true">03</span><div><div class="tag">International</div><h3>From Idea to Marketplace</h3></div><div class="more">Learn more <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div></article>
+      <article class="project reveal"><span class="num" aria-hidden="true">04</span><div><div class="tag">International</div><h3>24/7 Entrepreneurship</h3></div><div class="more">Learn more <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div></article>
+      <article class="project reveal d1"><span class="num" aria-hidden="true">05</span><div><div class="tag">Training · Adjara</div><h3>Startup Academy: Training Series for Adjarian Youth</h3></div><div class="more">Learn more <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div></article>
+      <article class="project reveal d2"><span class="num" aria-hidden="true">06</span><div><div class="tag">Global</div><h3>Global Entrepreneurship Week</h3></div><div class="more">Learn more <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div></article>
+      <article class="project reveal"><span class="num" aria-hidden="true">07</span><div><div class="tag">Startup battle</div><h3>Get in the Ring</h3></div><div class="more">Learn more <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div></article>
+      <article class="project reveal d1"><span class="num" aria-hidden="true">08</span><div><div class="tag">Competition</div><h3>Creative Business Cup</h3></div><div class="more">Learn more <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div></article>
+      <article class="project reveal d2"><span class="num" aria-hidden="true">09</span><div><div class="tag">Competition</div><h3>Startup Cup</h3></div><div class="more">Learn more <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div></article>
+      <article class="project reveal"><span class="num" aria-hidden="true">10</span><div><div class="tag">Business event</div><h3>Tbilisi FTW</h3></div><div class="more">Learn more <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div></article>
+      <article class="project reveal d1"><span class="num" aria-hidden="true">11</span><div><div class="tag">Networking</div><h3>Networking Tour in Budapest for Startups</h3></div><div class="more">Learn more <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div></article>
+      <article class="project reveal d2"><span class="num" aria-hidden="true">12</span><div><div class="tag">Incubation</div><h3>IBSU Business Incubator &amp; Idea Lab</h3></div><div class="more">Learn more <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div></article>
+      <article class="project reveal"><span class="num" aria-hidden="true">13</span><div><div class="tag">Mobility</div><h3>Youth Mobility: Me and My Company</h3></div><div class="more">Learn more <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div></article>
+      <article class="project reveal d1"><span class="num" aria-hidden="true">14</span><div><div class="tag">Volunteering</div><h3>Youth Camp: Volunteering as a Path to Employment</h3></div><div class="more">Learn more <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div></article>
+    </div>
+  </div>
+</section>
+
+<section id="team" aria-labelledby="team-title">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="kicker">The people</span>
+      <h2 id="team-title">Our team</h2>
+      <div class="divider" aria-hidden="true"></div>
+    </div>
+
+    <div class="team-group">
+      <h3 class="group-title reveal">Management Board</h3>
+      <div class="people">
+        <div class="person reveal"><div class="avatar" aria-hidden="true">NK</div><h3>Natalia Kavtaradze</h3><div class="role">President of the Association</div></div>
+        <div class="person reveal d1"><div class="avatar b" aria-hidden="true">SV</div><h3>Steve Verbist</h3><div class="role">Non-Executive Director</div></div>
+        <div class="person reveal d2"><div class="avatar p" aria-hidden="true">NB</div><h3>Naira Batsilashvili</h3><div class="role">Development Director in Adjara</div></div>
+        <div class="person reveal d3"><div class="avatar b" aria-hidden="true">TG</div><h3>Tinatin Gholadze</h3><div class="role">Project Coordinator</div></div>
+      </div>
+    </div>
+
+    <div class="team-group">
+      <h3 class="group-title reveal">Advisory Board</h3>
+      <div class="people">
+        <div class="person reveal"><div class="avatar" aria-hidden="true">BK</div><h3>Ben Knaefler</h3><div class="role">Yes for Europe Confederation</div></div>
+        <div class="person reveal d1"><div class="avatar b" aria-hidden="true">AS</div><h3>Ankit Srivastava</h3><div class="role">Levnet Ventures Investment</div></div>
+        <div class="person reveal d2"><div class="avatar p" aria-hidden="true">JP</div><h3>Jelena Plavanski</h3><div class="role">Serbian Business Angels Association</div></div>
+        <div class="person reveal d3"><div class="avatar" aria-hidden="true">GK</div><h3>Giorgi Khatsakvadze</h3><div class="role">Recruiters.Ge</div></div>
+        <div class="person reveal"><div class="avatar b" aria-hidden="true">MA</div><h3>Marina Archvadze</h3><div class="role">Design Workshop Derciki</div></div>
+        <div class="person reveal d1"><div class="avatar p" aria-hidden="true">AK</div><h3>Ani Kobidze</h3><div class="role">Advertising Agency 4P House</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="membership" aria-labelledby="membership-title">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="kicker">Join us</span>
+      <h2 id="membership-title">Become a member</h2>
+      <div class="divider" aria-hidden="true"></div>
+      <p>If you are an entrepreneur or an SME, we would love to hear from you.</p>
+    </div>
+    <div class="steps">
+      <div class="step reveal"><div class="n" aria-hidden="true">1</div><h3>Apply</h3><p>Find our membership offer and fill in the online application form.</p></div>
+      <div class="step reveal d1"><div class="n" aria-hidden="true">2</div><h3>Get reviewed</h3><p>Our evaluation committee reviews applications twice a month.</p></div>
+      <div class="step reveal d2"><div class="n" aria-hidden="true">3</div><h3>Get involved</h3><p>Join our networking, mentoring, training and acceleration activities.</p></div>
+    </div>
+    <div class="cta-card reveal">
+      <h2>Ready to build something?</h2>
+      <p>Take the first step toward becoming part of the Entrepreneurs Association community.</p>
+      <a class="btn btn-dark" href="https://docs.google.com/forms/d/1JRHiZQapylyy1XNbmMkEeBctiiUPE2xbPOr71xIV68I/edit" target="_blank" rel="noopener">Join now <span class="sr-only" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">(opens application form in a new tab)</span>
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <p class="fine">Applications are reviewed twice a month.</p>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<section id="contact" aria-labelledby="contact-title">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="kicker">Get in touch</span>
+      <h2 id="contact-title">Contact us</h2>
+      <div class="divider" aria-hidden="true"></div>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-card reveal">
+        <div class="ci" aria-hidden="true">
+          <svg class="icon" viewBox="0 0 24 24"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>
+        </div>
+        <h3>Address</h3>
+        <p>Vaja Pshavela Ave 1/43<br>Tbilisi, Georgia</p>
+      </div>
+      <div class="contact-card reveal d1">
+        <div class="ci" aria-hidden="true">
+          <svg class="icon" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="M3.5 6.5 12 13l8.5-6.5"/></svg>
+        </div>
+        <h3>Email</h3>
+        <a href="mailto:info@entrepreneurs.ge">info@entrepreneurs.ge</a>
+      </div>
+      <div class="contact-card reveal d2">
+        <div class="ci" aria-hidden="true">
+          <svg class="icon" viewBox="0 0 24 24"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg>
+        </div>
+        <h3>Phone</h3>
+        <a href="tel:+995599382295">+995 599 382 295</a>
+      </div>
+    </div>
+    <div class="socials">
+      <a href="https://www.facebook.com/EntrepreneursGeorgia" target="_blank" rel="noopener">
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 8h3V4h-3c-2.8 0-4 1.8-4 4.3V11H7v4h3v5h4v-5h3l.5-4H14V8.5c0-.4.2-.5.5-.5z"/></svg>
+        Facebook
+      </a>
+    </div>
+    <footer>© <span id="year"></span> Entrepreneurs Association · EA — ანტრეპრენერთა ასოციაცია</footer>
+  </div>
+</section>
+
+<script>
+  // Sticky nav style
+  const nav = document.getElementById('nav');
+  const onScroll = () => nav.classList.toggle('scrolled', window.scrollY > 40);
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  // Mobile menu (with aria state + Escape to close)
+  const toggle = document.getElementById('menuToggle');
+  const links = document.getElementById('navLinks');
+  const menuIcon = document.getElementById('menuIcon');
+  const setMenu = (open) => {
+    links.classList.toggle('open', open);
+    toggle.setAttribute('aria-expanded', String(open));
+    toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    menuIcon.innerHTML = open ? '<path d="M6 6l12 12M18 6L6 18"/>' : '<path d="M4 7h16M4 12h16M4 17h16"/>';
+  };
+  toggle.addEventListener('click', () => setMenu(!links.classList.contains('open')));
+  links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => setMenu(false)));
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && links.classList.contains('open')) { setMenu(false); toggle.focus(); } });
+
+  // Reveal on scroll
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  // Year
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
